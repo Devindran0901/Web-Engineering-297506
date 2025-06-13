@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Schedule</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 26%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: left;
+        }
+        th {
+            background-color: #add8e6;
+        }
+        .highlight {
+            background-color:gray;
+            color: white;
+        }
+        .highlight1 {
+            background-color: #add8e6;
+            color: black;
+        }
+        .highlight2 {
+            background-color: #add8e6;
+            color: black;
+        }
+        .highlight3 {
+            background-color: #add8e6;
+            color: black;
+        }
+        .wording {
+            color: black;
+            text-align: right;
+        }
+        .wording1 {
+            background-color: lightgray;
+        }
+        h1 {
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body>
+    <h1><b>Flight Schedule</b></h1>
+
+    <table>
+        <tr>
+            <th>Flight Number:</th>
+            <th>From:</th>
+            <th>To:</th>
+            <th>Departure:</th>
+            <th>Arrival:</th>
+        </tr>
+        <tr>
+            <td class="highlight1"><b>BA 3451</b></td>
+            <td class="wording1">Heathrow</td>
+            <td class="wording1">Nuremberg</td>
+            <td class="wording1">19:20</td>
+            <td class="wording1">19:50</td>
+        </tr>
+        <tr class="highlight">
+            <td class="highlight2"><b>BA 1254</b></td>
+            <td class="wording">Luton</td>
+            <td class="wording">Alicante</td>
+            <td class="wording">19:40</td>
+            <td class="wording">20:50</td>
+        </tr>
+        <tr>
+            <td class="highlight3"><b>LH 331</b></td>
+            <td class="wording1">Heathrow</td>
+            <td class="wording1">Hamburg</td>
+            <td class="wording1">20:00</td>
+            <td class="wording1">20:20</td>
+        </tr>
+    </table>
+</body>
+</html>

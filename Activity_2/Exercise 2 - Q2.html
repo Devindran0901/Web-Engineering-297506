@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Area of Rectangle</title>
+  <style>
+    .box {
+      border: 1px solid black;
+      width: 200px;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+    .box-title {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .line {
+      margin: 3px 0;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    var length = parseFloat(prompt("Enter length:"));
+    var width = parseFloat(prompt("Enter width:"));
+    var area = length * width;
+  </script>
+
+  <div class="box">
+    <div class="box-title">AREA OF RECTANGLE</div>
+    <div class="line">Length : <script>document.write(length);</script></div>
+    <div class="line">Width : <script>document.write(width);</script></div>
+    <div class="line">Total : <script>document.write(area);</script></div>
+  </div>
+</body>
+</html>
