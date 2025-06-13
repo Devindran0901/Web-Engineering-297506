@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Page</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background-color:  #6DA4D3;;
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 25px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .active {
+            color: var(--primary-color) !important;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f1f1f1;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+         /* Gallery Styles */
+         .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item .caption {
+            padding: 0.8rem;
+            background: rgba(44, 62, 80, 0.8);
+            color: white;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow: auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Video Section */
+        .video-container {
+            margin-top: 1.5rem;
+        }
+
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .video-form {
+            background-color: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Add-ons Section */
+        .addons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .addons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .addon-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .addon-item h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .addon-content {
+            height: 300px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 0.5rem;
+        }
+
+        .tab.active {
+            background-color: white;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #2c3e50;
+            color: white;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="lifestyle.html">Lifestyle</a></li>
+                <li><a href="galleries.html">Gallery</a></li>
+            </ul>
+            </nav>
+        <div class="container">
+            <h1>Gallery</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="image-gallery">
+            <h2>Image Gallery</h2>
+            <p>Browse through our collection of stunning visuals. Click on any image to view it in full size.</p>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="img 1.jpg" alt="Devindran">
+                    <div class="caption">DEVINDRAN</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img 6.jpg" alt="lion">
+                    <div class="caption">KING</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img 2.jpg" alt="indian food">
+                    <div class="caption">INDIAN BANANA LEAF FOOD</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img 5.jpg" alt="pdrm">
+                    <div class="caption">POLIS DIRAJA MALAYSIA</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img 3.jpg" alt="space">
+                    <div class="caption">SPACE</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img 4.jpg" alt="football">
+                    <div class="caption">FOOTBALL</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img 8.jpg" alt="anime">
+                    <div class="caption">ANIME</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img 7.jpg" alt="harrypotter">
+                    <div class="caption">HARRY POTTER</div>
+                </div>
+                
+            </div>
+        </section>
+
+        <div id="imageModal" class="modal">
+            <span class="close">&times;</span>
+            <div class="modal-content">
+                <img id="modalImage" src="" alt="Modal Image">
+            </div>
+        </div>
+            
+            
+
+        <div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<!-- Your existing addons section (fixed structure) -->
+<section id="addons">
+    <h2>Additional Features</h2>
+    <div class="addon-item">
+        <h3>WhatsApp Chat</h3>
+        <div class="addon-content" id="whatsapp">
+            <div style="text-align: center; padding-top: 100px;">
+                <h4>WhatsApp Integration</h4>
+                <p style="font-size: 3rem;">💬</p>
+                <button id="whatsappButton">Start Chat</button>
+            </div>
+        </div>
+        <p>Connect with visitors via WhatsApp directly from your site.</p>
+    </div>
+</section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Gallery Page. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Image Gallery Modal
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const closeBtn = document.querySelector('.close');
+        
+        if (modal && modalImg && closeBtn) {
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    modal.style.display = 'flex';
+                    modalImg.src = imgSrc;
+                });
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+        
+        // Tabs Functionality
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                tabs.forEach(tab => tab.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                this.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // WhatsApp Button Functionality
+        const whatsappButton = document.getElementById('whatsappButton');
+        if (whatsappButton) {
+            whatsappButton.addEventListener('click', function() {
+                // Replace with your WhatsApp number
+                window.open('https://wa.me/qr/PFDHBVGJLMO5O1', '_blank');
+            });
+        }
+    });
+</script>
+</body>
+</html>

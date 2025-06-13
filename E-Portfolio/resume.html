@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume - Daniel Gallego</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+    .resume-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .left-section {
+      width: 35%;
+      background-color: #1a1a1a;
+      color: white;
+      padding: 20px;
+    }
+    .left-section img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .left-section h2 {
+      margin-bottom: 10px;
+      border-left: 5px solid orange;
+      padding-left: 10px;
+    }
+    .left-section p,
+    .left-section li {
+      font-size: 14px;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .left-section ul {
+      padding-left: 20px;
+    }
+    .social-media {
+      margin-top: 20px;
+    }
+
+    .right-section {
+      width: 65%;
+      padding: 30px;
+    }
+    .name-title {
+      margin-bottom: 20px;
+    }
+    .name-title h1 {
+      font-size: 32px;
+      color: #000;
+    }
+    .name-title h2 {
+      font-size: 18px;
+      color: gray;
+    }
+    .contact-info {
+      margin: 15px 0;
+      color: #333;
+      font-size: 14px;
+    }
+    .contact-info div {
+      margin-bottom: 8px;
+    }
+    .section {
+      margin-top: 30px;
+    }
+    .section h2 {
+      background-color: #000;
+      color: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .section h2::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background-color: orange;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: -10px;
+    }
+    .experience, .education {
+      border-left: 3px solid orange;
+      padding-left: 15px;
+    }
+    .experience-item, .education-item {
+      margin-bottom: 20px;
+    }
+    .experience-item h3, .education-item h3 {
+      color: #000;
+      font-size: 16px;
+    }
+    .experience-item span, .education-item span {
+      font-size: 14px;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div class="resume-container">
+    <div class="left-section">
+      <img src="profile_picture.jpg" alt="devindran">
+      <h2>ABOUT ME</h2>
+      <p>I love coding and learning new things.</p>
+
+      <h2>SKILL</h2>
+      <ul>
+        <li>Fast Learner.</li>
+        <li>Quick Thinking.</li>
+        <li>Leadership.</li>
+        <li>Problem solving.</li>
+      </ul>
+
+      <div class="social-media">
+        <h2>SOCIAL MEDIA</h2>
+        <p>@iamdevindran</p>
+        <p>devindran0901@gmail.com/p>
+      </div>
+    </div>
+
+    <div class="right-section">
+      <div class="name-title">
+        <h1>DEVINDRAN RAVICHANDRAN</h1>
+        <h2>SOFTWARE ENGINEER</h2>
+      </div>
+      <div class="contact-info">
+        <div>☎ 011-14731409</div>
+        <div>✉ devindran0901@gmail.com</div>
+        <div>⌂ 106, Taman Bayam, 09600 Lunas, Kedah.</div>
+      </div>
+
+      <div class="section">
+        <h2>EXPERIENCE</h2>
+        <div class="experience">
+          <div class="experience-item">
+            <h3>Manager Marketing</h3>
+            <span>08 August 2019 - 21 June 2021</span>
+          </div>
+          <div class="experience-item">
+            <h3>Regional Marketing SPV</h3>
+            <span>17 September 2018 - 04 August 2019</span>
+          </div>
+          <div class="experience-item">
+            <h3>Marketing SPV</h3>
+            <span>22 August 2017 - 17 September 2018</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>EDUCATION</h2>
+        <div class="education">
+          <div class="education-item">
+            <h3>University</h3>
+            <span>10 August 2023 - 21 June 2026</span>
+          </div>
+          <div class="education-item">
+            <h3>Secondary School</h3>
+            <span>17 January 2014 - 02 September 2018</span>
+          </div>
+          <div class="education-item">
+            <h3>Primary School</h3>
+            <span>02 January 2008 - 17 September 2013</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
